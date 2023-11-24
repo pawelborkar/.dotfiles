@@ -5,6 +5,14 @@ lvim.plugins = {
   { "pocco81/auto-save.nvim" }
 }
 
+-- Floating Terminal Commands
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Terminal",
+  f = { "<cmd>ToggleTerm<cr>", "Floating terminal" },
+  v = { "<cmd>2ToggleTerm size=30 direction=vertical<cr>", "Split vertical" },
+  h = { "<cmd>2ToggleTerm size=30 direction=horizontal<cr>", "Split horizontal" },
+}
+
 -- formatters
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
