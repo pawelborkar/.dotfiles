@@ -113,12 +113,15 @@ alias mstatus="sudo systemctl status mongod"
 alias mstop="sudo systemctl stop mongod" 
 alias pstatus="sudo systemctl status postgresql"
 alias sstatus="sudo systemctl status mysql"
+alias dstop="sudo systemctl stop"
 alias pstart="sudo systemctl start postgresql && echo 'PostgreSQL Started!!!'"
 alias sstart="sudo systemctl start mysql && echo 'MYSQL Started!!!'"
 alias pstop="sudo systemctl stop postgresql && echo 'PostgreSQL Stopped...'"
 alias sstop="sudo systemctl stop mysql && echo 'MYSQL Stopped...'"
 alias prestart="pstop && pstart"
 alias srestart="sstop && sstart"
+alias dbs="sudo systemctl status mysql cassandra postgresql mongod redis-server"
+alias dbstop="sudo systemctl stop mysql cassandra postgresql mongod redis-server"
 alias pd="pnpm dev"
 alias ps="pnpm start"
 alias pi="pnpm install"
@@ -143,16 +146,17 @@ alias supgrade="sudo apt upgrade"
 alias suu="supdate; supgrade"
 alias sinstall="sudo apt install"
 alias suninstall="sudo apt autoremove"
-alias rb="sudo systemctl restart bluetooth"
-alias x="exit"
+alias rb="sudo service bluetooth restart"
 alias python="/usr/bin/python3"
 alias sdi="sudo dpkg -i"
 alias dcu="sudo docker compose up"
 alias dcd="sudo docker compose down"
-alias dbs="pstatus; mstatus; sstatus"
-alias dbstop="pstop; sstop; mstop"
 alias gac="gaa; gcmsg"
+alias ptd="pnpm tauri dev"
+alias lg='lazygit'
+alias x="exit"
 
+# NVM PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -182,4 +186,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # flutter
 export PATH="$PATH:/home/pawel/Applications/flutter/bin"
 
-alias lg='lazygit'
+# Java
+export JAVA_HOME=/usr/local/jdk-21.0.1
+export PATH=$PATH:$JAVA_HOME/bin
+lias lg='lazygit'
