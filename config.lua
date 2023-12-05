@@ -1,4 +1,8 @@
 -- lvim configurations
+
+-- Custom Keybindings
+lvim.keys.insert_mode["ii"] = "<Esc>"
+
 -- Additional Plugins
 lvim.plugins = {
   { "maxmx03/dracula.nvim" },
@@ -50,3 +54,4 @@ code_actions.setup {
 
 -- colorscheme
 lvim.colorscheme = "dracula"
+lvim.transparent_window = true
