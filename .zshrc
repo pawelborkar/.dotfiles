@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
@@ -21,6 +20,14 @@ gt()
 	echo "---------------------------------"
 }
 
+lvo(){
+  cd ~/Projects/"$1" && lvim .
+}
+
+rcc(){
+  mkdir -p "$1" && cd -P -- "$1" && touch "$1".tsx
+}
+
 mkcd()
 {
     mkdir -p -- "$1" &&
@@ -30,7 +37,7 @@ mkcd()
 #Example aliases
 alias rt=". ~/.zshrc"
 alias lv="lvim"
-alias lm="cd ~/minit/ && lv ."
+alias lm="cd ~/Projects/minit/ && lv ."
 alias lvc="lvim /home/pawel/.config/lvim/config.lua"
 alias zshrc="nvim ~/.zshrc"
 alias mstart="sudo systemctl start mongod && sudo systemctl status mongod"
@@ -48,7 +55,6 @@ alias srestart="sstop && sstart"
 alias dbs="sudo systemctl status mysql cassandra postgresql mongod redis-server"
 alias dbstop="sudo systemctl stop mysql cassandra postgresql mongod redis-server"
 alias pd="pnpm dev"
-alias ps="pnpm start"
 alias pi="pnpm install"
 alias pf="pnpm format"
 alias pl="pnpm lint"
@@ -72,26 +78,23 @@ alias suu="supdate; supgrade"
 alias sinstall="sudo apt install"
 alias suninstall="sudo apt autoremove"
 alias rb="sudo service bluetooth restart"
-alias python="/usr/bin/python3"
 alias sdi="sudo dpkg -i"
 alias dcu="sudo docker compose up"
 alias dcd="sudo docker compose down"
 alias gac="gaa; gcmsg"
 alias ptd="pnpm tauri dev"
+alias ptb="pnpm tauri build"
 alias lg='lazygit'
+alias ldd='lazydocker'
 alias x="exit"
-
-#nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+alias lcd='xdg-open http://localhost:3000/'
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 export PATH="/usr/bin/flutter/bin:$PATH"
 
+export PATH="/home/pawel/Apps/activitywatch:$PATH"
 #asdf
 . $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
@@ -104,3 +107,18 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+alias lzd='lazydocker'
+
+PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
+
+# bun completions
+[ -s "/home/pawel/.bun/_bun" ] && source "/home/pawel/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+. "/home/pawel/.deno/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
