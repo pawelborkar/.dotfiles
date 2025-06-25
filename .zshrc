@@ -1,17 +1,22 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export TERM=xterm-256color
 export NVM_LAZY_LOAD=true
+export TERM=xterm-256color
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="cloud"
-
 plugins=(git zsh-autosuggestions zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
+# Auto-start tmux with -u if not already inside tmux
+if [[ -z "$TMUX" ]] && command -v tmux &> /dev/null; then
+  exec tmux -u
+fi
 
 # Helpers
+grc(){
+  gh repo clone pawelborkar/"$1"
+}
+
 gt()
 {
 	cd ~/Projects/"$1" || ~/Projects
@@ -38,7 +43,7 @@ mkcd()
 alias rt=". ~/.zshrc"
 alias lv="lvim"
 alias lm="cd ~/Projects/minit/ && lv ."
-alias lvc="lvim /home/pawel/.config/lvim/config.lua"
+alias lvc="lvim $HOME/.config/lvim/config.lua"
 alias zshrc="nvim ~/.zshrc"
 alias mstart="sudo systemctl start mongod && sudo systemctl status mongod"
 alias mstatus="sudo systemctl status mongod"
@@ -88,37 +93,28 @@ alias lg='lazygit'
 alias ldd='lazydocker'
 alias x="exit"
 alias lcd='xdg-open http://localhost:3000/'
+alias lzd='lazydocker'
+
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-export PATH="/usr/bin/flutter/bin:$PATH"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 
-export PATH="/home/pawel/Apps/activitywatch:$PATH"
-#asdf
-. $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-autoload -Uz compinit && compinit
-
-# pnpm
-export PNPM_HOME="/home/pawel/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-alias lzd='lazydocker'
 
 PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
 
-# bun completions
-[ -s "/home/pawel/.bun/_bun" ] && source "/home/pawel/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-. "/home/pawel/.deno/env"
+. "$HOME/.deno/env"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "$HOME/.deno/env"
