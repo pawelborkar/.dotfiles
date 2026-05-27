@@ -1,0 +1,204 @@
+emulate -L zsh
+setopt extendedglob
+
+# -----------------------------
+# mkcd -> mkdir and cd
+# -----------------------------
+mkcd() {
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
+# -----------------------------
+# Project navigation
+# -----------------------------
+pr() {
+  cd ~/Projects/"$1" || return
+  la
+  }
+
+# -----------------------------
+# Go to project + list files
+# -----------------------------
+gt() {
+  cd ~/Projects/"$1" || return
+
+  echo "------------ contents ------------"
+  eza --icons
+  echo "----------------------------------"
+}
+
+# -----------------------------
+# Open project in LunarVim
+# -----------------------------
+lvo() {
+  cd ~/Projects/"$1" || return
+  lvim .
+}
+
+# -----------------------------
+# Clone GitHub repo
+# Usage: grc repo-name
+# -----------------------------
+grc() {
+  gh repo clone pawelborkar/"$1"
+}
+
+# -----------------------------
+# Create React component
+# Usage: rcc Button
+# -----------------------------
+rcc() {
+  mkdir -p "$1" &&
+  touch "$1/$1.tsx" &&
+  cd "$1" || return
+}
+
+# -----------------------------
+# Extract archives
+# -----------------------------
+extract() {
+  if [ -f "$1" ] ; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.rar)     unrar x "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.Z)       uncompress "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *) echo "cannot extract '$1'" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# -----------------------------
+# Kill process on port
+# Usage: killport 3000
+# -----------------------------
+killport() {
+  lsof -ti :"$1" | xargs kill -9
+}
+
+# -----------------------------
+# Find process by port
+# -----------------------------
+port() {
+  lsof -i :"$1"
+}
+
+# -----------------------------
+# Create and enter temp dir
+# -----------------------------
+tmpd() {
+  dir=$(mktemp -d)
+  cd "$dir" || return
+}
+
+# -----------------------------
+# Git branch cleaner
+# Deletes merged branches
+# -----------------------------
+gclean() {
+  git branch --merged |
+  grep -v "\*\|main\|master\|dev" |
+  xargs -n 1 git branch -d
+}
+
+# -----------------------------
+# Quick HTTP server
+# -----------------------------
+serve() {
+  python3 -m http.server "${1:-8000}"
+}
+
+# -----------------------------
+# Search process
+# -----------------------------
+psg() {
+  ps aux | grep -i "$1"
+}
+
+# -----------------------------
+# JSON formatter
+# -----------------------------
+json() {
+  jq '.' "$1"
+}
+
+# -----------------------------
+# Disk usage
+# -----------------------------
+dus() {
+  du -sh ./*
+}
+
+# -----------------------------
+# Largest files
+# -----------------------------
+largest() {
+  find . -type f -exec du -Sh {} + |
+  sort -rh |
+  head -n "${1:-20}"
+}
+
+# -----------------------------
+# Benchmark command
+# Usage: bench "bun dev"
+# -----------------------------
+bench() {
+  hyperfine "$1"
+}
+
+# -----------------------------
+# Copy file contents
+# -----------------------------
+copyfile() {
+  bat --plain "$1" | wl-copy
+  echo "Copied: $1"
+}
+
+# -----------------------------
+# Create README
+# -----------------------------
+readme() {
+  touch README.md
+  echo "# $(basename "$PWD")" > README.md
+}
+
+# -----------------------------
+# Bun cleanup
+# -----------------------------
+bclean() {
+  rm -rf node_modules bun.lockb
+  bun install
+}
+
+# -----------------------------
+# Cargo cleanup
+# -----------------------------
+cclean() {
+  cargo clean
+  rm -rf target
+}
+
+# -----------------------------
+# Tauri cleanup
+# -----------------------------
+tclean() {
+  rm -rf src-tauri/target
+  rm -rf dist
+}
+
+# -----------------------------
+# Show PATH entries
+# -----------------------------
+pathlist() {
+  echo "$PATH" | tr ":" "\n"
+}

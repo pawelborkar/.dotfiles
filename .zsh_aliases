@@ -1,0 +1,201 @@
+# -----------------------------
+# Reload / Config
+# -----------------------------
+alias rt="source ~/.zshrc"
+alias zshrc="nvim ~/.zshrc"
+alias aliases="nvim ~/.zsh_aliases"
+alias funcs="nvim ~/.zsh_functions"
+alias lza="nvim ~/.zsh_aliases"
+
+# -----------------------------
+# Editors
+# -----------------------------
+alias v="nvim"
+alias nvim="lvim"
+alias lv="lvim"
+alias lva="lvim ~/.zsh_aliases"
+alias lvc="lvim ~/.config/lvim/config.lua"
+alias v="lvim ."
+
+# -----------------------------
+# Navigation
+# -----------------------------
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ch="cd ~"
+# -----------------------------
+# Listing
+# -----------------------------
+alias ls="eza --icons"
+alias ll="eza -lah --icons --git"
+alias la="eza -a --icons"
+alias tree="eza --tree --icons"
+
+# -----------------------------
+# Utility
+# -----------------------------
+alias cls="clear"
+alias celar="clear"
+alias clr="clear"
+alias x="exit"
+alias mkdirp="mkdir -p"
+alias rmd="rm -rf"
+alias cpv="rsync -ah --info=progress2"
+
+# -----------------------------
+# Clipboard
+# -----------------------------
+alias copy="wl-copy"
+alias cp="wl-copy"
+alias paste="wl-paste"
+
+# -----------------------------
+# Git
+# -----------------------------
+alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gaa="git add ."
+alias gc="git commit"
+alias gf="git fetch"
+alias gst="git status"
+alias grv="git remote -v"
+alias grao="git remote add origin"
+alias grro="git remote remove origin"
+alias gcmsg="git commit -m"
+alias gp="git push"
+alias gl="git pull"
+alias gco="git checkout"
+alias gb="git branch"
+alias gbb="git branch"
+alias gd="git diff"
+alias gpsup="git push --set-upstream origin"
+alias glog="git log --oneline --graph --decorate"
+alias glg="git log --oneline --graph --decorate"
+alias gac="gaa && gcmsg"
+
+# -----------------------------
+# Lazygit / Lazydocker
+# -----------------------------
+alias lg="lazygit"
+alias ld="lazydocker"
+
+
+# -----------------------------
+# Brew
+# -----------------------------
+alias bri="brew install "
+alias brs="brew search "
+alias bru="brew update; brew upgrade"
+alias brr="brew remove "
+
+
+# -----------------------------
+# Bun
+# -----------------------------
+alias b="bun"
+alias bi="bun install"
+alias ba="bun add"
+alias br="bun remove"
+alias bd="bun dev"
+alias bb="bun build"
+alias bu="bun update"
+alias buu="bun update; bun upgrade"
+alias bx="bunx"
+alias btd="bun tauri dev"
+alias btb="bun tauri build"
+
+# -----------------------------
+# PNPM
+# -----------------------------
+alias pi="pnpm install"
+alias pa="pnpm add"
+alias prr="pnpm remove"
+alias pd="pnpm dev"
+alias pb="pnpm build"
+alias pf="pnpm format"
+alias pl="pnpm lint"
+alias px="pnpm dlx"
+alias ptd="pnpm tauri dev"
+alias ptb="pnpm tauri build"
+# -----------------------------
+# Cargo / Rust
+# -----------------------------
+alias cr="cargo run"
+alias cb="cargo build"
+alias cbr="cargo build --release"
+alias ct="cargo test"
+alias cc="cargo check"
+alias cf="cargo fmt"
+alias ccl="cargo clippy"
+alias crr="cargo run --release"
+alias cu="cargo update"
+
+# -----------------------------
+# Tauri
+# -----------------------------
+alias td="cargo tauri dev"
+alias tb="cargo tauri build"
+
+# -----------------------------
+# Docker
+# -----------------------------
+alias d="docker"
+alias dc="docker compose"
+alias dcu="docker compose up"
+alias dcud="docker compose up -d"
+alias dcd="docker compose down"
+alias dps="docker ps"
+alias di="docker images"
+
+# -----------------------------
+# System
+# -----------------------------
+alias supdate="sudo apt update"
+alias supgrade="sudo apt upgrade"
+alias suu="sudo apt update && sudo apt upgrade"
+alias sinstall="sudo apt install"
+alias sremove="sudo apt remove"
+alias saremove="sudo apt autoremove"
+
+# -----------------------------
+# Networking
+# -----------------------------
+alias ports="ss -tulnp"
+alias myip="curl ifconfig.me"
+
+# -----------------------------
+# Localhost
+# -----------------------------
+alias l3000="xdg-open http://localhost:3000"
+alias l8000="xdg-open http://localhost:8000/docs"
+alias l88="xdg-open http://localhost:8080/docs"
+alias lvite="xdg-open http://localhost:5173"
+alias lastro="xdg-open http://localhost:4321"
+
+# -----------------------------
+# Processes
+# -----------------------------
+alias psa="ps aux"
+alias k9="kill -9"
+
+# -----------------------------
+# Archives
+# -----------------------------
+alias untar="tar -xvf"
+alias gz="gzip"
+
+# -----------------------------
+# Better defaults
+# -----------------------------
+alias cat="bat"
+alias grep="rg"
+alias find="fd"
+
+# -----------------------------
+# Safety
+# -----------------------------
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
